@@ -7,6 +7,36 @@ const port = 3000;
 // Serve static files from the "public" folder
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Handle /contact route
+app.get('/contact-us', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'contact-us.html'));
+  });
+
+  // Handle /about route
+app.get('/terms', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'terms.html'));
+  });
+
+  // Handle /about route
+app.get('/privacy-policy', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'privacy-policy.html'));
+  });
+
+  // Handle /about route
+app.get('/about-us', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'about-us.html'));
+  });
+
+  // Handle /about route
+app.get('/dmca', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'dmca.html'));
+  });
+
+  // Handle /about route
+  app.get('/terabox-player-online', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'terabox-player-online.html'));
+  });
+  
 // Middleware to parse JSON requests
 app.use(express.json());
 

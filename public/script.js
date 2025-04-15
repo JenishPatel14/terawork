@@ -165,4 +165,13 @@ hamburger.addEventListener('click', () => {
             resultsDiv.style.display = 'none';
         }
     });
-
+    document.addEventListener('DOMContentLoaded', function() {
+        const currentLocation = window.location.pathname; // Get the current page URL
+        const links = document.querySelectorAll('nav a'); // Select all links in the nav
+        
+        links.forEach(link => {
+            if (link.getAttribute('href') === currentLocation) {
+                link.classList.add('active'); // Add active class to the matching link
+            }
+        });
+    });
