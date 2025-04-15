@@ -60,39 +60,61 @@
       <a href="/dmca">DMCA</a> |
   </nav>
   </footer>
-
-  <script>// Only on watch.html
-    document.addEventListener("DOMContentLoaded", () => {
-      const watchBtn = document.getElementById("watchBtn");
-      if (watchBtn) {
-        watchBtn.addEventListener("click", async () => {
-          const urlInput = document.getElementById("teraboxWatchUrl");
-          const url = urlInput.value.trim();
-          if (!url) return alert("Please enter a TeraBox URL");
-    
-          try {
-            const response = await fetch("/get-links", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ teraboxUrl: url })
-            });
-    
-            const data = await response.json();
-            if (!data.options) throw new Error("No streamable link found");
-    
-            const video = document.getElementById("teraboxVideo");
-            const videoSource = document.getElementById("videoSource");
-            const container = document.getElementById("videoContainer");
-    
-            videoSource.src = data.options.find(opt => opt.type === "fast")?.downloadLink || "";
-            video.load();
-            container.style.display = "block";
-          } catch (err) {
-            alert("Failed to fetch video: " + err.message);
-          }
+<script src="script.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const watchBtn = document.getElementById("watchBtn");
+  
+    watchBtn?.addEventListener("click", async () => {
+      const urlInput = document.getElementById("teraboxWatchUrl");
+      const url = urlInput.value.trim();
+      if (!url) return alert("Please enter a TeraBox URL");
+  
+      try {
+        const response = await fetch("/get-links", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ teraboxUrl: url })
         });
+  
+        const data = await response.json();
+        if (!data.options || data.options.length === 0) throw new Error("No streamable link found");
+  
+        const fastLink = data.options.find(opt => opt.type === "fast")?.downloadLink;
+        const slowLink = data.options.find(opt => opt.type === "slow")?.downloadLink;
+  
+        const video = document.getElementById("teraboxVideo");
+        const videoSource = document.getElementById("videoSource");
+        const container = document.getElementById("videoContainer");
+  
+        // Create buttons
+        const btnGroup = document.createElement("div");
+        btnGroup.innerHTML = `
+          <button id="playFast" style="margin: 10px;">▶ Play Fast</button>
+          <button id="playSlow" style="margin: 10px;">🐢 Play Slow</button>
+        `;
+        container.innerHTML = '<h2>Select Version:</h2>';
+        container.appendChild(btnGroup);
+        container.appendChild(video);
+        container.style.display = "block";
+  
+        // Event listeners for buttons
+        document.getElementById("playFast")?.addEventListener("click", () => {
+          videoSource.src = fastLink;
+          video.load();
+          video.play();
+        });
+  
+        document.getElementById("playSlow")?.addEventListener("click", () => {
+          videoSource.src = slowLink;
+          video.load();
+          video.play();
+        });
+      } catch (err) {
+        alert("Failed to fetch video: " + err.message);
       }
     });
-    </script>
+  });
+  </script>
 </body>
 </html>
