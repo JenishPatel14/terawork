@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="./favicon.ico" type="image/x-icon" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Watch TeraBox Video Online</title>
+  <meta name="description" content="Stream TeraBox videos directly in your browser. Paste a TeraBox share link and start watching. Fast and simple TeraBox video player.">
+  <meta name="robots" content="index, follow" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-container">
+      <div class="logo-title">
+        <i class="fas fa-download"></i>
+        <span>Terra Downloader</span>
+      </div>
+      <nav class="nav-menu" id="navMenu">
+        <a href="/">Home</a>
+        <a href="#instructions">Instructions</a>
+      </nav>
+      <div class="hamburger" id="hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <h1>Watch TeraBox Video</h1>
+    <p class="subtitle">Paste a TeraBox link to stream the video online</p>
+
+    <div class="input-group">
+      <input type="text" id="teraboxWatchUrl" placeholder="Paste TeraBox URL here...">
+      <button id="watchBtn">Watch Online</button>
+    </div>
+
+    <div id="videoContainer" style="display:none;">
+      <h2>Streaming Now:</h2>
+      <video id="teraboxVideo" width="100%" height="400" controls>
+        <source id="videoSource" src="" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 TerraDownloader.com All rights reserved.</p>
+    <p>This website is not an official Terabox website and we are not associated with terabox.app or Flextech Inc.</p>
+    <nav class="footer-nav">
+      <a href="/dmca">DMCA</a> |
+      <a href="/privacy-policy">Privacy Policy</a> |
+      <a href="/contact-us">Contact Us</a> |
+      <a href="/disclaimer">Disclaimer</a> |
+      <a href="/about-us">About Us</a>
+    </nav>
+  </footer>
+
+  <script>// Only on watch.html
+    document.addEventListener("DOMContentLoaded", () => {
+      const watchBtn = document.getElementById("watchBtn");
+      if (watchBtn) {
+        watchBtn.addEventListener("click", async () => {
+          const urlInput = document.getElementById("teraboxWatchUrl");
+          const url = urlInput.value.trim();
+          if (!url) return alert("Please enter a TeraBox URL");
+    
+          try {
+            const response = await fetch("/get-links", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ teraboxUrl: url })
+            });
+    
+            const data = await response.json();
+            if (!data.options) throw new Error("No streamable link found");
+    
+            const video = document.getElementById("teraboxVideo");
+            const videoSource = document.getElementById("videoSource");
+            const container = document.getElementById("videoContainer");
+    
+            videoSource.src = data.options.find(opt => opt.type === "fast")?.downloadLink || "";
+            video.load();
+            container.style.display = "block";
+          } catch (err) {
+            alert("Failed to fetch video: " + err.message);
+          }
+        });
+      }
+    });
+    </script>
+</body>
+</html>

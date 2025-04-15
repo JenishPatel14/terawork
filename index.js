@@ -154,7 +154,7 @@ app.post('/get-links', async (req, res) => {
                     type: 'watch',
                     label: 'Stream Online',
                     description: 'Terabox Online Video',
-                    downloadLink: `/watch?url=${encodeURIComponent(fastLink)}`
+                    downloadLink: `/terabox-player-online.html?url=${encodeURIComponent(fastLink)}`
                 },
             ]
         });
