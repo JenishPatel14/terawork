@@ -165,13 +165,14 @@ hamburger.addEventListener('click', () => {
             resultsDiv.style.display = 'none';
         }
     });
-    document.addEventListener('DOMContentLoaded', function() {
-        const currentLocation = window.location.pathname; // Get the current page URL
-        const links = document.querySelectorAll('nav a'); // Select all links in the nav
-        
-        links.forEach(link => {
-            if (link.getAttribute('href') === currentLocation) {
-                link.classList.add('active'); // Add active class to the matching link
-            }
-        });
+  document.addEventListener("DOMContentLoaded", () => {
+    const links = document.querySelectorAll(".nav-menu a");
+    const currentPath = window.location.pathname.replace(/\.html$/, ""); // remove .html if present
+
+    links.forEach(link => {
+      const linkPath = link.getAttribute("href").replace(/\.html$/, ""); // normalize href
+      if (linkPath === currentPath) {
+        link.classList.add("active");
+      }
     });
+  });
