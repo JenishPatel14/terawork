@@ -300,7 +300,7 @@ app.get('/get-link', async (req, res) => {
   }
 });
 setInterval(() => {
-    axios.get('https://your-app.onrender.com/healthz')
+    axios.get('https://terawork.onrender.com/')
       .then(() => console.log('Self-ping successful'))
       .catch(err => console.error('Self-ping failed:', err.message));
   }, 4 * 60 * 1000); // Every 4 minutes
