@@ -34,6 +34,10 @@ app.get('/terabox-player-online', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'terabox-player-online.html'));
 });
 
+app.get('/ping', (req, res) => {
+    res.status(200).send('OK');
+  });
+  
 // Middleware to parse JSON requests
 app.use(express.json());
 
@@ -300,10 +304,10 @@ app.get('/get-link', async (req, res) => {
   }
 });
 setInterval(() => {
-    axios.get('https://terawork.onrender.com/')
+    axios.get('https://terawork.onrender.com/ping')
       .then(() => console.log('Self-ping successful'))
       .catch(err => console.error('Self-ping failed:', err.message));
-  }, 4 * 60 * 1000); // Every 4 minutes
-app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
-});
+  }, 1 * 60 * 1000); // Every 4 minutes 
+  app.listen(port, () => {
+    console.log(`Server running on http://localhost:${port}`);
+  });  
