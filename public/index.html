@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="./favicon.ico" type="image/x-icon" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TeraBox Download Link Generator</title>
-    <meta name="description" content="Generate direct TeraBox download links instantly. Supports all major TeraBox domains. Fast, free, and easy to use TeraBox link generator tool.">
-    <meta name="keywords" content="TeraBox link generator, TeraBox downloader, direct TeraBox download link, TeraBox file download, free TeraBox tool, teraboxapp.com link download, TeraBox share link downloader">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://terradownloader.com/">
-    <!-- Add these styles inside <style> tag -->
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="icon" href="./favicon.ico" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TeraBox Download Link Generator</title>
+        <meta name="description" content="Generate direct TeraBox download links instantly. Supports all major TeraBox domains. Fast, free, and easy to use TeraBox link generator tool.">
+        <meta name="keywords" content="TeraBox link generator, TeraBox downloader, direct TeraBox download link, TeraBox file download, free TeraBox tool, teraboxapp.com link download, TeraBox share link downloader">
+        <meta name="robots" content="index, follow">
+        <link rel="canonical" href="https://terradownloader.com/">
+      
+        <!-- Inline Critical Styles (if applicable) -->
+        <link rel="stylesheet" href="styles.css">
+      
+        <!-- Optimize Font Awesome load (defer render-blocking) -->
+        <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+      </head>
+      
 <body>
     <!-- Add this inside <body>, right after <body> -->
 <header class="site-header">
@@ -139,7 +144,7 @@
     </footer>
     
     <!-- Add this inside <script> tag, at the end -->
-        <script src="script.js"></script>
+        <script src="script.js" defer></script>
         <script>var a2a_config = a2a_config || {};
         a2a_config.num_services = 22;
         </script>
