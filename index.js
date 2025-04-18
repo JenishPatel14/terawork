@@ -307,7 +307,7 @@ setInterval(() => {
     axios.get('https://terawork.onrender.com/ping')
       .then(() => console.log('Self-ping successful'))
       .catch(err => console.error('Self-ping failed:', err.message));
-  }, 1 * 60 * 1000); // Every 4 minutes 
+  }, 13.5 * 60 * 1000); // Every 4 minutes 
   app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
   });  
