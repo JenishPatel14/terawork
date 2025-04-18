@@ -3,7 +3,8 @@ const axios = require('axios');
 const path = require('path');
 const FormData = require('form-data'); // Add form-data for multipart/form-data requests
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
+
 
 // Serve static files from the "public" folder
 app.use(express.static(path.join(__dirname, 'public')));
