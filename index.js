@@ -30,8 +30,8 @@ app.get('/dmca', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'dmca.html'));
 });
 
-app.get('/terabox-player-online', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'terabox-player-online.html'));
+app.get('/terabox-video-player', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'terabox-video-player.html'));
 });
 
 app.get('/ping', (req, res) => {
