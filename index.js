@@ -253,7 +253,7 @@ app.post('/get-links', async (req, res) => {
         type: 'watch',
         label: 'Watch Online',
         description: 'Terabox Online Video',
-        downloadLink: `/terabox-player-online`
+        downloadLink: `/terabox-video-player`
       }
     ];
 
