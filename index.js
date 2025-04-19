@@ -304,7 +304,7 @@ app.get('/get-link', async (req, res) => {
   }
 });
 setInterval(() => {
-    axios.get('https://terawork.onrender.com/ping')
+    axios.get('https://teradownloader.site/ping')
       .then(() => console.log('Self-ping successful'))
       .catch(err => console.error('Self-ping failed:', err.message));
   }, 13.5 * 60 * 1000); // Every 4 minutes 
