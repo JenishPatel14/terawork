@@ -10,15 +10,26 @@
     <link rel="canonical" href="https://teradownloader.site/contact-us">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-KLN9Q6C4R2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-KLN9Q6C4R2');
-</script>
+    <script>
+        function loadAnalytics() {
+          var s = document.createElement('script');
+          s.src = "https://www.googletagmanager.com/gtag/js?id=G-KLN9Q6C4R2";
+          s.async = true;
+          document.head.appendChild(s);
+      
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-KLN9Q6C4R2');
+        }
+      
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(loadAnalytics);
+        } else {
+          setTimeout(loadAnalytics, 2000);
+        }
+      </script>
+      
 </head>
 <body>
     <header class="site-header">
