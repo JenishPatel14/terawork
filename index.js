@@ -38,6 +38,14 @@ app.get('/ping', (req, res) => {
     res.status(200).send('OK');
   });
   
+  app.use((req, res, next) => {
+    const host = req.headers.host;
+    if (host === 'terawork.onrender.com') {
+      return res.redirect(301, 'https://teradownloader.site' + req.url);
+    }
+    next();
+  });
+  
 // Middleware to parse JSON requests
 app.use(express.json());
 
