@@ -134,11 +134,14 @@ async function getTeraDownloaderDownloadLink(fileData) {
 
 // Function to get file information from existing API
 async function getFileInfo(shareId) {
-  const infoUrl = `https://terabox.hnn.workers.dev/api/get-info?shorturl=${shareId}&pwd=`;
+  const infoUrl = `https://terabox.hnn.workers.dev/api/get-info-new?shorturl=${shareId}&pwd=`;
+  console.log("Fetching file info from:", infoUrl);
+
   const response = await axios.get(infoUrl, {
     headers: getCloudflareHeaders(),
     httpsAgent: new (require('https').Agent)({ rejectUnauthorized: false })
   });
+
   return response.data;
 }
 
